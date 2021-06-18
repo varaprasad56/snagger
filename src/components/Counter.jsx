@@ -23,13 +23,15 @@ class Counter extends Component {
         return 'Zero';
     }
     getBadgeClasses(){
-        return (this.state.value===0) ? "badge badge-secondary":"badge badge-primary";
+        return (this.state.value===0) ? "badge m-1 badge-secondary":"badge m-1 badge-primary";
     }
     render() { 
         return (<React.Fragment>
+            <div>
             <span className = {this.getBadgeClasses()}>{this.displayCountValue()}</span>
             <button onClick = {this.incrementCount} className = "btn btn-success m-2">Increment</button>
-            <button onClick = {this.decrementCount} className = "btn btn-warning">Decrement</button>           
+            <button onClick = {this.decrementCount} className = "btn btn-warning">Decrement</button>   
+            </div>        
         </React.Fragment>);
     }
 }
