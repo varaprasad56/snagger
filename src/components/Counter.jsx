@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 class Counter extends Component {
     state = {
-        count : 0,
-        items : ["yoga","preperation","Movies"]
+        value : 0
     }
     constructor(){
         super()
@@ -11,27 +10,26 @@ class Counter extends Component {
     }
     incrementCount() {
         console.log('incremented');
-        this.setState({count:this.state.count+1})
+        this.setState({value:this.state.value+1})
     }
     decrementCount(){
         console.log('decremented');
-        this.setState({count:this.state.count-1})
+        this.setState({value:this.state.value-1})
     }
     displayCountValue(){
-        if(this.state.count>0){
-            return this.state.count;
+        if(this.state.value>0){
+            return this.state.value;
         }
         return 'Zero';
     }
+    getBadgeClasses(){
+        return (this.state.value===0) ? "badge badge-secondary":"badge badge-primary";
+    }
     render() { 
         return (<React.Fragment>
-            <span className = "tag-pill">{this.displayCountValue()}</span>
-            <button onClick = {this.incrementCount} className = "btn btn-primary m-2">Increment</button>
-            <button onClick = {this.decrementCount} className = "btn btn-secondary">Decrement</button>
-            {this.state.count === 0 && 'Visible if Count is Zero'}
-            <ul>
-                {this.state.items.map(item => {return <li key= {item}>{item}</li>})}
-            </ul>
+            <span className = {this.getBadgeClasses()}>{this.displayCountValue()}</span>
+            <button onClick = {this.incrementCount} className = "btn btn-success m-2">Increment</button>
+            <button onClick = {this.decrementCount} className = "btn btn-warning">Decrement</button>           
         </React.Fragment>);
     }
 }
