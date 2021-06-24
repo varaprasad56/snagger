@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 class Counter extends Component {
     state = {
-        value : 0
+        id:this.props.id,
+        value : this.props.value
     }
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
+        //  this.setState({value:this.props.value})
         this.incrementCount = this.incrementCount.bind(this);
         this.decrementCount = this.decrementCount.bind(this);
     }
     incrementCount() {
-        console.log('incremented');
         this.setState({value:this.state.value+1})
     }
     decrementCount(){
-        console.log('decremented');
         this.setState({value:this.state.value-1})
     }
     displayCountValue(){
@@ -30,7 +30,8 @@ class Counter extends Component {
             <div>
             <span className = {this.getBadgeClasses()}>{this.displayCountValue()}</span>
             <button onClick = {this.incrementCount} className = "btn btn-success m-2">Increment</button>
-            <button onClick = {this.decrementCount} className = "btn btn-warning">Decrement</button>   
+            <button onClick = {this.decrementCount} className = "btn btn-warning m-2">Decrement</button>   
+            <button className = "btn btn-danger m-2" onClick = {() => this.props.delete(this.state.id)}>Delete</button>
             </div>        
         </React.Fragment>);
     }
