@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 class Counter extends Component {
   getButtonClass = () => {
-    return this.props.counter.value >= 0
+    return this.props.counter.value > 0
       ? "btn btn-secondary"
       : "btn btn-secondary disabled";
   };
@@ -23,7 +23,7 @@ class Counter extends Component {
             onClick={() => {
               this.props.onIncrement(this.props.counter);
             }}
-            className={this.getButtonClass()}
+            className="btn btn-secondary"
           >
             +
           </button>
@@ -31,7 +31,9 @@ class Counter extends Component {
         <div className="col-sm">
           <button
             onClick={() => {
-              this.props.onDecrement(this.props.counter);
+                if(this.props.counter.value>0){
+                    this.props.onDecrement(this.props.counter);
+                }
             }}
             className={this.getButtonClass()}>
             -
